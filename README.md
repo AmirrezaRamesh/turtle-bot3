@@ -1,5 +1,9 @@
 # turtle-bot3
-tutorial of setting turtlebot3 up and also running tests on it
+tutorial of setting turtlebot3 up and also running some tests on it
+
+### what is turtle bot?
+
+
 
 # section 1
 
