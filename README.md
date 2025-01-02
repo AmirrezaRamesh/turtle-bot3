@@ -2,7 +2,7 @@
 the tutorial of setting turtlebot3 up and also running some tests on it
 
 ### what is turtle bot?
-
+![turtlebot](pics/1.png)
 
 
 
