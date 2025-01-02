@@ -4,14 +4,24 @@ the tutorial of setting turtlebot3 up and also running some tests on it
 ### what is turtle bot?
 ![turtlebot](pics/1.png)
 
+The `turtleBot3` is a popular, low-cost, open-source robot platform used primarily for learning, development, and research in robotics. there are 2 types of turtlebot3 , `burger` and `waffle pi` ,and the one I was able to work with is the `waffle pi` model. below you can see the overview of the setup!
+
+### overveiw 
+- robot: turtlebot3
+- model: waffle pi
+- SBC: raspberry pi 3 (16 GB micro SD, 1 GB RAM)
+- control board : OpenCR 1.0
+- Lidar : LDS-1.0
+- server : ubuntu server 22.04 LTS
+- client : ubuntu desktop 22.04 LTS
+- ROS distro : ROS2 Humble
 
 
-# setting up the turtlebot3 waffle pi
+# 1.setting up the turtlebot3 waffle pi
 in this document, we're trying to set up hardware, firmware and software of turtlebot3 waffle pi
 
 ## list
 - [important note](#important-note)
-- [overveiw](#overveiw)
 - [steps](#steps)
 - [troubleshooting list](#trouble-shootings)
   
@@ -25,22 +35,10 @@ link : https://emanual.robotis.com/docs/en/platform/turtlebot3 .
 this github README is only to document the extra details & correction that we encountred along the way, not a full document.
 thank you!
 
-## overveiw 
-- robot: turtlebot3
-- model: waffle pi
-- SBC: raspberry pi 3 (16 GB micro SD, 1 GB RAM)
-- control board : OpenCR 1.0
-- Lidar : LDS-1.0
-- network : local enviroment
-- server : ubuntu server 22.04 LTS
-- client : ubuntu desktop 22.04 LTS
-- ROS distro : ROS2 Humble
-- assemble status : already assmembled 
-
 
 ## steps
 let's reveiw the steps that I did accourding to e-manual : 
-- burn the image of ubuntu server on microSD using Pi Imager (check TB 1) 
+- burn the image of ubuntu server on microSD using Pi Imager 
 - put the microSD in raspbery pi and turn on the power of OpenCR which is connected to RPi
 - let the ubuntu server boot and login using `ubuntu` as both username and password
 - cd to `/etc/netplan/` direcotory and modify the .yaml file using `vim` to connect to internet
@@ -78,15 +76,15 @@ at first there was a 8GB microSD card on RPi. after downloading turtle-bot packa
 - `sudo vim /etc/fstab` and add the line `/swapfile swap swap defaults 0 0` at the end of script
 the swap is correctly set up. use `htop` and see if it's shown below `memory` labled as `swp`.
 
-### extra TBs
+### extra notes:
 - for netplan apply command, use `sudo apt-get install linux-modules-extra-raspi`and then `sudo apt-get install openvswitch-switch-dpdk` to avoid gettig Vsiwtch warning. although this error doesn't effect anything, still annoying XD
 
 - on the e-manual tutorial, it also said there would be `export ROS_MASTER_URI=http://{IP_ADDRESS_OF_REMOTE_PC}:11311` & `export ROS_HOSTNAME={IP_ADDRESS_OF_RASPBERRY_PI_3}` on .bashrc file and we should modify the IP adresses of them but I geuss this as well is for noetic local Image and not on ubuntu 22 raw server. I added them to bashrc just to be sure, but if I'm not mistaken these are for ROS 1 structure and we could set up the ROS network without these two variables.
 
 - if you want to connect raspberry pi to a wifi with portal authentication like university routers: posponed right now
 
-# SLAM
+# 2.SLAM
 
-# Navigation
+# 3.Navigation
 
 
