@@ -26,8 +26,7 @@ all the nessccery commands, packages and examples of turtlebot is avaibles on e-
 
 - link : https://emanual.robotis.com/docs/en/platform/turtlebot3.
 
-this github README is only to document the extra details & correction that we encountred along the way, not a full document.
-thank you!
+here I will be writing about the problems I faced while trying to set up the turtlebot
 
 
 ## steps
@@ -37,8 +36,8 @@ let's reveiw the steps that I did accourding to e-manual :
 - let the ubuntu server boot and login using `ubuntu` as both username and password
 - cd to `/etc/netplan/` direcotory and modify the .yaml file using `vim` to connect to internet
 - use `ip a` command and check the IP assigned to `wlan0`
-- use the command `ssh ubuntu@192.168.X.X` from remote PC to connect to RPi(check TB2)
-- now move that to e-manual and install all the required dependecies of ROS & turtlebot & opencr(checkout TB3)
+- use the command `ssh ubuntu@192.168.X.X` from remote PC to connect to RPi(check TB1)
+- now move that to e-manual and install all the required dependecies of ROS & turtlebot & opencr(checkout TB2)
 - add the required scripts and commands to /.bashrc including `export TURTLEBOT3_MODEL= waffle_pi` and etc
 - reboot the RPi and ssh again
 - run the command `ros2 launch turtlebot3_bringup robot.launch.py` for robot bring up
