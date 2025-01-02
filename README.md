@@ -22,7 +22,7 @@ The `turtleBot3` is a popular, low-cost(not in iran though), open-source robot p
 for starter, we're trying to set up hardware, firmware and software of turtlebot3 waffle pi
   
 ### important-note
-all the nessccery commands, packages and examples of turtlebot is avaibles on e-manual web page 
+all the nessccery commands, packages and examples of turtlebot is avaibles on e-manual web page. 
 if you want to start using turtle bot make sure you follow the instrucstion of e-manual humble tutorial step by step
 
 link : https://emanual.robotis.com/docs/en/platform/turtlebot3 .
