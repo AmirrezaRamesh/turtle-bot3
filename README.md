@@ -19,7 +19,7 @@ The `turtleBot3` is a popular, low-cost, open-source robot platform used primari
 
 
 # 1.setting up the turtlebot3 waffle pi
-in this document, we're trying to set up hardware, firmware and software of turtlebot3 waffle pi
+for starter, we're trying to set up hardware, firmware and software of turtlebot3 waffle pi
 
 ## list
 - [important note](#important-note)
