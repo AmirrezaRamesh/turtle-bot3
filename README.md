@@ -5,7 +5,7 @@ the tutorial of setting turtlebot3 up and also running some tests on it
 
 # 0.what is turtle bot?
 
-The `turtleBot3` is a popular, low-cost, open-source robot platform used primarily for learning, development, and research in robotics. there are 2 types of turtlebot3 , `burger` and `waffle pi` ,and the one I was able to work with is the `waffle pi` model. below you can see the overview of the setup!
+The `turtleBot3` is a popular, low-cost(not in iran though), open-source robot platform used primarily for learning, development, and research in robotics. there are 2 types of turtlebot3 , `burger` and `waffle pi` ,and the one I was able to work with is the `waffle pi` model. below you can see the overview of the setup!
 
 ### overveiw 
 - robot: turtlebot3
