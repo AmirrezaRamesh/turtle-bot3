@@ -19,14 +19,14 @@ The `turtleBot3` is a popular, low-cost(not in iran though), open-source robot p
 
 
 # 1.setting up the turtlebot3 waffle pi
-for starter, we're trying to set up hardware, firmware and software of turtlebot3 waffle pi
+for starter, we're trying to set up the hardware, the firmware and the software of turtlebot3 waffle pi
   
 ### important-note
-all the nessccery commands, packages and examples of turtlebot is avaibles on e-manual web page. if you want to start using turtle bot, make sure you follow the instructions of e-manual humble tutorial step by step
+all the nessccery commands, packages and examples of turtlebot is avaibles on robotics e-manual web page. if you want to start using turtle bot, make sure you follow the instructions of e-manual humble tutorial step by step
 
 - link : https://emanual.robotis.com/docs/en/platform/turtlebot3.
 
-here I will be writing about the problems I faced while trying to set up the turtlebot
+here I will only be writing about the problems I faced while trying to set up the turtlebot
 
 
 ## steps
@@ -47,19 +47,19 @@ let's reveiw the steps that I did accourding to e-manual :
 
 ## trouble-shootings
 
-### TB1
+### TB1 : ssh password authentication failed
 after trying to ssh to raspberry pi, we got the error `premission denied(publickey)` and since we wanted to ssh using password not public key, I ran `sudo vim /etc/ssh/sshd_config` and uncommented the `passwordauthentiocation yes` and also changed the `yes` of `publickeyauthentication yes` to `no` so it would only use the password authentication then restared the ssh service using `sudo systemctl restart ssh*`. but then again we got the error `premission denied()`. I should mention that we could ssh from raspberry to remote PC but not the other way around. my geuss is that its related to some security option of ubuntu server. since we couldn't ssh via password authentication, again I allowed publickey authentication in sshd-config and I used publickey authentication with commands below: 
 - after making sure `openssh-server` and `openssh-client` is installed on remote PC, run the command `ssh-keygen -t rsa` on it to create publickey
-- then on ubuntu server, run the command `sudo scp <UserofRemotePC>@<IPofRemotePC>:/home/user/.ssh/id_rsa.pub /root/` and now file is moved on /root directory
+- then on ubuntu server, run the command `sudo scp <user of remote PC>@<IP of remote PC>:/home/user/.ssh/id_rsa.pub /root/` and now file is moved on /root directory
 - on ubuntu server use the command `cat /root/id_rsa.pub >> /home/ubuntu/.ssh/authorized_keys` and also `cat /root/id_rsa.pub >> /root/.ssh/authorized_keys`
-- now restart service using `sudo systemctl restart ssh*`
- after these command we can remotely ssh to ubuntu server without need of any password by just knowing the local IP of ubuntu server
-important note: along the way of using these commands, maybe ubuntu server locks the ssh connection if the footprint of remotePC is not recognized by it. in that case you need to use the command `sudo ssh-keygen -R 192.168.X.X` on ubuntu server. remember that the IP in the command is the local IP of remote PC
-edit: the password authentication method was solved:
+- now restart the service using `sudo systemctl restart ssh*`
+ after these command we can remotely ssh to ubuntu server without any password, only by just knowing the local IP of ubuntu server.
+ important note: along the way of using these commands, maybe ubuntu server locks the ssh connection if the footprint of remotePC is not recognized by it. in that case you need to use the command `sudo ssh-keygen -R <remotePC local IP>` on ubuntu server.
+**edit**: the password authentication method can be solved:
 - `cloud init` on RPi can interfere with password authentication. I found this out by checking `cloud init logs` using `less /var/log/cloud-init.log` and seeing it was modifying `ssh configurations` and overwrting its files. the `/etc/ssh/sshd_config.d/50-cloud-init.conf` file path caught my eye in the log file. so I opend the file and saw that there's a `passwordAuthentication no` line there! meaning after every reboot, `cloud init` was forcing ssh to avoid password authentication. as weird as it sounds, it is true. so in the mentioned file, simply changed `no` to `yes` and now the ssh login using password works just fine
 
 
-### TB2
+### TB2 : 
 at first there was a 8GB microSD card on RPi. after downloading turtle-bot packages there was a ` colcon build --symlink-install --parallel-workers 1` command to build the workspace. after running this command, it took 40 minutes and then it froze on 28% of process. tried it multiple times and still the output was the same. it froze the 28%. when I searched it on internet, other people had the same problem with raspberry pi 3. the problem was due to lack of RAM which is only 1GB on RPi3. the solution was **to add 2GB to 4GB of swap**. when I tried to do so, it seemed the there was no available space on microSD card since it was only 8GB and the packages of ubutu, ROS and turtle but had already made up all the space. so we paurchased a new SDcard with 16GB of space. then I used the commands below to make a 4GB command and then the `colcon build` command was done successfully after about an hour:
 - `sudo swapoff /swapfile #if already on`
 - `sudo fallocate -l 4G /swapfile`
