@@ -55,7 +55,8 @@ after trying to ssh to raspberry pi, we got the error `premission denied(publick
 - now restart the service using `sudo systemctl restart ssh*`
  after these command we can remotely ssh to ubuntu server without any password, only by just knowing the local IP of ubuntu server.
  important note: along the way of using these commands, maybe ubuntu server locks the ssh connection if the footprint of remotePC is not recognized by it. in that case you need to use the command `sudo ssh-keygen -R <remotePC local IP>` on ubuntu server.\
-**edit**: the password authentication method can be solved:
+\
+**edit**: the password authentication method was solved:
 - `cloud init` on RPi can interfere with password authentication. I found this out by checking `cloud init logs` using `less /var/log/cloud-init.log` and seeing it was modifying `ssh configurations` and overwrting its files. the `/etc/ssh/sshd_config.d/50-cloud-init.conf` file path caught my eye in the log file. so I opend the file and saw that there's a `passwordAuthentication no` line there! meaning after every reboot, `cloud init` was forcing ssh to avoid password authentication. as weird as it sounds, it is true. so in the mentioned file, simply changed `no` to `yes` and now the ssh login using password works just fine
 
 
